@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import {
+    Http,
+    Response,
+    Headers,
+    URLSearchParams,
+} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { Post } from '../interfaces/post.interface';
@@ -14,9 +19,19 @@ export class ApiService {
         private http: Http
     ) { }
 
-    getPosts(): Observable<Post[]> {
-        return this.http.get(this.baseUrl + 'posts')
-            .map(res => res.json());
+    getPosts(page?: number, limit?: number): Observable<{ posts: Post[], total: number }> {
+        let params: URLSearchParams = new URLSearchParams();
+
+        params.set('_page', page.toString());
+        params.set('_limit', limit.toString());
+
+        return this.http.get(this.baseUrl + 'posts', { search: params })
+            .map((res: Response) => {
+                const headers: Headers = res.headers;
+                const total = parseInt(headers.get('x-total-count'));
+
+                return { posts: res.json(), total: total };
+            });
     }
 
 }
