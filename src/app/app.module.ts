@@ -5,16 +5,24 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
+import { ListPage } from './pages/list/list.page';
+
+import { ApiService } from './services/api.service';
+
+import { SubStrPipe } from './pipes/substr.pipe';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ListPage,
+    SubStrPipe
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
