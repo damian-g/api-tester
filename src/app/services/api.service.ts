@@ -22,6 +22,19 @@ export class ApiService {
         private http: Http
     ) { }
 
+    sendPost(value: { title: string, body: string }): Observable<boolean> {
+        const body = {
+            data: {
+                title: value.title,
+                body: value.body,
+                userId: 1
+            }
+        };
+
+        return this.http.post(this.baseUrl + 'posts', body)
+            .map((res: Response) => res.status === 201);
+    }
+
     getPosts(page: number, limit: number, filter?: string): Observable<{ posts: Post[], total: number }> {
         let params: URLSearchParams = new URLSearchParams();
 
