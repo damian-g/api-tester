@@ -19,11 +19,12 @@ export class ApiService {
         private http: Http
     ) { }
 
-    getPosts(page?: number, limit?: number): Observable<{ posts: Post[], total: number }> {
+    getPosts(page: number, limit: number, filter?: string): Observable<{ posts: Post[], total: number }> {
         let params: URLSearchParams = new URLSearchParams();
 
         params.set('_page', page.toString());
         params.set('_limit', limit.toString());
+        params.set('title_like', filter);
 
         return this.http.get(this.baseUrl + 'posts', { search: params })
             .map((res: Response) => {

@@ -9,11 +9,17 @@
 </nav>
 
 <div class="container">
-  <h2>List of posts</h2>
+  <h2>List of posts ({{ totalItems }})</h2>
 
-  <pagination [totalItems]="totalItems" [itemsPerPage]="itemsPerPage"(pageChanged)="pageChanged($event)"></pagination>
+  <div class="form-group">
+    <label for="title">Search for title:</label>
+    <p *ngIf="filter">Current query: '{{ filter }}'</p>
+    <input type="text" class="form-control" id="title" #title>
+  </div>
 
-  <ul class="list-group">
+  <pagination [totalItems]="totalItems" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)" *ngIf="totalItems > itemsPerPage"></pagination>
+
+  <ul class="list-group" *ngIf="posts && posts.length">
     <li class="list-group-item" *ngFor="let post of posts">
       <h3>{{ post.title }}</h3>
       <p>{{ post.body | substr:60 }}</p>
