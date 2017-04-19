@@ -5,6 +5,7 @@ import {
 } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { Post } from '../../interfaces/post.interface';
 
@@ -25,7 +26,8 @@ export class ListPage {
   @ViewChild('title') titleInput: ElementRef;
 
   constructor(
-    private api: ApiService
+    private api: ApiService,
+    private router: Router,
   ) {
     this.getPosts(1, this.itemsPerPage);
   }
@@ -39,6 +41,10 @@ export class ListPage {
       this.posts = res.posts;
       this.totalItems = res.total;
     });
+  }
+
+  selectPost(post: Post) {
+    this.router.navigate(['/post', post.id]);
   }
 
   ngAfterViewInit() {

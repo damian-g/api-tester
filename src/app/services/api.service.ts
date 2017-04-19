@@ -8,8 +8,11 @@ import {
 import { Observable } from 'rxjs/Observable';
 
 import { Post } from '../interfaces/post.interface';
+import { Comment } from '../interfaces/comment.interface';
+import { User } from '../interfaces/user.interface';
 
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
 
 @Injectable()
 export class ApiService {
@@ -33,6 +36,23 @@ export class ApiService {
 
                 return { posts: res.json(), total: total };
             });
+    }
+
+    getPost(id: number): Observable<Post> {
+        return this.http.get(this.baseUrl + 'posts/' + id)
+            .map((res: Response) => res.json());
+    }
+
+    getComments(id: number): Observable<Comment[]> {
+        return this.http.get(this.baseUrl + 'posts/' + id + '/comments')
+            .map((res: Response) => res.json());
+    }
+
+    getUser(id: number): Observable<User> {
+        return this.getPost(id).switchMap(res => {
+            return this.http.get(this.baseUrl + 'users/' + res.userId)
+                .map((res: Response) => res.json());
+        });
     }
 
 }
