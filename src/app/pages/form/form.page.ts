@@ -8,7 +8,8 @@ import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'form-page',
-  templateUrl: './form.page.html'
+  templateUrl: './form.page.html',
+  styleUrls: ['./form.page.css']
 })
 export class FormPage {
   form: FormGroup;

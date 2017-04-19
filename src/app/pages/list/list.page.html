@@ -17,11 +17,13 @@
     <input type="text" class="form-control" id="title" #title>
   </div>
 
-  <pagination [totalItems]="totalItems" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)" *ngIf="totalItems > itemsPerPage"></pagination>
+  <div class="text-center">
+    <pagination [totalItems]="totalItems" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)" *ngIf="totalItems > itemsPerPage"></pagination>
+  </div>
 
   <ul class="list-group" *ngIf="posts && posts.length">
     <li class="list-group-item" *ngFor="let post of posts">
-      <h3 (click)="selectPost(post)">{{ post.title }}</h3>
+      <h3 class="post-title" (click)="selectPost(post)">{{ post.title }}</h3>
       <p>{{ post.body | substr:60 }}</p>
     </li>
   </ul>

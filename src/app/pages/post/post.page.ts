@@ -12,7 +12,8 @@ import { User } from '../../interfaces/user.interface';
 
 @Component({
   selector: 'post-page',
-  templateUrl: './post.page.html'
+  templateUrl: './post.page.html',
+  styleUrls: ['./post.page.css']
 })
 export class PostPage {
   private post: Post;

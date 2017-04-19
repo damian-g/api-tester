@@ -14,7 +14,8 @@ import 'rxjs/add/operator/debounceTime';
 
 @Component({
   selector: 'list-page',
-  templateUrl: './list.page.html'
+  templateUrl: './list.page.html',
+  styleUrls: ['./list.page.css']
 })
 export class ListPage {
   private posts: Post[];

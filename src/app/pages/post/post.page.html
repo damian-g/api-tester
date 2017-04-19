@@ -25,8 +25,8 @@
     <h5>Comments:</h5>
 
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let comment of comments">
-        <p>{{ comment.name }}</p>
+      <li class="list-group-item comment-item" *ngFor="let comment of comments">
+        <p class="comment-name">{{ comment.name }}</p>
         <span>{{ comment.body }}</span>
       </li>
     </ul>

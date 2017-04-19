@@ -1,0 +1,7 @@
+.comment-item {
+    margin-bottom: 1rem;
+}
+
+.comment-item .comment-name{
+    font-weight: bold;
+}

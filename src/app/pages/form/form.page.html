@@ -21,7 +21,7 @@
       <input type="text" class="form-control" id="title" formControlName="title">
 
       <div *ngIf="!form.controls.title.valid && (form.controls.title.dirty || submitted)">
-        <p>Title is required!</p>
+        <p class="warning">Title is required!</p>
       </div>
     </div>
 
@@ -30,7 +30,7 @@
       <input type="text" class="form-control" id="body" formControlName="body">
 
       <div *ngIf="!form.controls.body.valid && (form.controls.body.dirty || submitted)">
-        <p>Body is required!</p>
+        <p class="warning">Body is required!</p>
       </div>
     </div>
 
